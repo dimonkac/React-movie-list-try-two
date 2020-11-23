@@ -8,12 +8,17 @@
   padding: 10px;
   box-sizing: border-box;
 }
-.logo {
+.header > svg {
   width: 60px;
-  height: 60px;
-  background: url(../img/star.png) no-repeat center center/cover;
 }
-.logo > p {
-  margin-left: 70px;
+.nav {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 80px);
+  justify-content: space-between;
+}
+.nav-link {
   font-size: 20px;
+  color: white;
+  text-decoration: none;
 }
