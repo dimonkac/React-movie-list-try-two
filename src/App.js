@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
@@ -10,6 +10,12 @@ import { FavoritPage } from "./content/favoritPage";
 import { More } from "./content/more";
 
 const App = () => {
+  // useEffect(() => {
+  //   if (!localStorage.getItem("favorit")) {
+  //     localStorage.setItem("favorit", JSON.stringify([]));
+  //   }
+  // }, []);
+
   return (
     <div className="App">
       <Header />

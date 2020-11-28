@@ -52,8 +52,8 @@ export const FavoritPage = () => {
         <div className="poster">
           <img src={Api.poster_url + poster_path} alt="poster film" />
         </div>
-        <div className="poster">{release_date}</div>
         <div className="poster">{title}</div>
+        <div className="poster">{release_date}</div>
         <div className="buttons">
           <button onClick={onAddFavorit(title)} className="like">
             <Icon />

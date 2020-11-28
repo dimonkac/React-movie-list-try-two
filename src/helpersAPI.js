@@ -17,4 +17,16 @@ export default class Api {
       }
     });
   }
+  static getMoviesMore(id) {
+    return new Promise(async (res, rej) => {
+      const result = await fetch(
+        `${Api.url}/movie/${id}?api_key=${Api.key}&language=en-US`
+      );
+      if (result.status === 200) {
+        res(await result.json());
+      } else {
+        rej(await result.text());
+      }
+    });
+  }
 }

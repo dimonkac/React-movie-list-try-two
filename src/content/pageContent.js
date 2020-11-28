@@ -14,6 +14,8 @@ export const Content = ({
   const [movie, setMovies] = useState([]);
   const [load, setLoad] = useState(true);
 
+  const favorit = JSON.parse(localStorage.getItem("favorit"));
+
   const getMovies = async () => {
     const info = await Api.getMovies(page).catch(console.log);
     if (info) setMovies(info.results);
@@ -23,10 +25,14 @@ export const Content = ({
     getMovies();
   }, []);
 
-  const onAddFavorit = (title) => () => {
-    const _movie = [...movie];
-    const index = _movie.findIndex((m) => m.title === title);
-    console.log(index);
+  const onAddFavorit = (id) => () => {
+    if (favorit.includes(id)) {
+      favorit.splice(favorit.indexOf(id), 1);
+    } else {
+      favorit.push(id);
+    }
+    localStorage.setItem("favorit", JSON.stringify(favorit));
+    console.log(localStorage);
   };
   const onIncrementMinus = () => {
     setCount(count - 1);
@@ -56,10 +62,14 @@ export const Content = ({
         <div className="poster">
           <img src={Api.poster_url + poster_path} alt={title} />
         </div>
-        <div className="poster">{release_date}</div>
         <div className="poster">{title}</div>
+        <div className="poster">Release date:{release_date}</div>
         <div className="buttons">
-          <button onClick={onAddFavorit(title)} className="like">
+          <button
+            // active={favorit.includes(id)}
+            onClick={onAddFavorit(id)}
+            className="like"
+          >
             <Icon />
           </button>
           <Link to={`/more/${id}`} className="more ">
