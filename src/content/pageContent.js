@@ -66,7 +66,7 @@ export const Content = ({
         <div className="poster">Release date:{release_date}</div>
         <div className="buttons">
           <button
-            // active={favorit.includes(id)}
+            active={favorit.includes(id)}
             onClick={onAddFavorit(id)}
             className="like"
           >

@@ -10,11 +10,11 @@ import { FavoritPage } from "./content/favoritPage";
 import { More } from "./content/more";
 
 const App = () => {
-  // useEffect(() => {
-  //   if (!localStorage.getItem("favorit")) {
-  //     localStorage.setItem("favorit", JSON.stringify([]));
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!localStorage.getItem("favorit")) {
+      localStorage.setItem("favorit", JSON.stringify([]));
+    }
+  }, []);
 
   return (
     <div className="App">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { ReactComponent as Icon } from "../img/like.svg";
 import { Link } from "react-router-dom";
 import Api from "../helpersAPI";
@@ -8,29 +8,47 @@ import "./page.css";
 export const FavoritPage = () => {
   const [count, setCount] = useState(1);
   const [movie, setMovies] = useState([]);
+  const [favorit, setFavorit] = useState(
+    JSON.parse(localStorage.getItem("favorit"))
+  );
   const [load, setLoad] = useState(true);
 
-  const getMovies = async () => {
-    const info = await Api.getMovies().catch(console.log);
-    if (info) setMovies(info.results);
-    if (load) setLoad(false);
-  };
+  // const getMovies = async () => {
+  //   const info = await Api.getMovies().catch(console.log);
+  //   if (info) setMovies(info.results);
+  //   if (load) setLoad(false);
+  // };
   useEffect(() => {
-    getMovies();
+    const promises = favorit.map((id) => Api.getMoviesMore(id));
+    Promise.all(promises).then((res) => setMovies(res));
+    console.log(promises);
+
+    if (load) setLoad(false);
   }, []);
 
-  const onAddFavorit = (title) => () => {
-    const _movie = [...movie];
-    const index = _movie.findIndex((m) => m.title === title);
-    console.log(index);
+  // const onAddFavorit = (title) => () => {
+  //   const _movie = [...movie];
+  //   const index = _movie.findIndex((m) => m.title === title);
+  //   console.log(index);
+  // };
+
+  const onAddFavorit = (id) => () => {
+    if (favorit.includes(id)) {
+      favorit.splice(favorit.indexOf(id), 1);
+    } else {
+      favorit.push(id);
+    }
+    localStorage.setItem("favorit", JSON.stringify(favorit));
+    console.log(localStorage);
   };
+
   const onIncrementMinus = () => {
     setCount(count - 1);
-    getMovies();
+    setFavorit();
   };
   const onIncrementPlas = () => {
     setCount(count + 1);
-    getMovies();
+    setFavorit();
   };
   const listPages = () => {
     return (
@@ -55,7 +73,11 @@ export const FavoritPage = () => {
         <div className="poster">{title}</div>
         <div className="poster">{release_date}</div>
         <div className="buttons">
-          <button onClick={onAddFavorit(title)} className="like">
+          <button
+            active={favorit.includes(id)}
+            onClick={onAddFavorit(id)}
+            className="like"
+          >
             <Icon />
           </button>
           <Link to={`/more/${id}`} className="more ">

@@ -10,7 +10,7 @@ export const More = ({
     params: { id },
   },
 }) => {
-  const [detail, setDetail] = useState([]);
+  const [detail, setDetail] = useState({});
   const [load, setLoad] = useState(true);
 
   // const _detail = [];
@@ -23,26 +23,26 @@ export const More = ({
   };
   useEffect(() => {
     getMoviesMore();
-    console.log(Object.entries(detail));
+    console.log(detail);
   }, []);
 
-  const renderMovie = () => {
-    return Object.entries(detail).map(
-      ({ poster_path, release_date, title }, id) => (
-        <div key={id} className="cart">
-          <div className="poster">
-            <img src={Api.poster_url + poster_path} alt={title} />
-          </div>
-          <div className="poster">{release_date}</div>
-          <div className="poster">{title}</div>
-        </div>
-      )
-    );
-  };
+  // const renderMovie = () => {
+  //   return Object.entries(detail).map(
+  //     ({ poster_path, release_date, title }, id) => (
+  //       <div key={id} className="cart">
+  //         <div className="poster">
+  //           <img src={Api.poster_url + poster_path} alt={title} />
+  //         </div>
+  //         <div className="poster">{release_date}</div>
+  //         <div className="poster">{title}</div>
+  //       </div>
+  //     )
+  //   );
+  // };
 
   if (load) {
     return <div>...load</div>;
   } else {
-    return <div className="wraper">{renderMovie()}</div>;
+    return <div className="wraper"> {JSON.stringify(detail)} </div>;
   }
 };
