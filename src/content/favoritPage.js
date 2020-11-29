@@ -7,7 +7,9 @@ import "./page.css";
 
 export const FavoritPage = () => {
   const [count, setCount] = useState(1);
+
   const [movie, setMovies] = useState([]);
+
   const [favorit, setFavorit] = useState(
     JSON.parse(localStorage.getItem("favorit"))
   );
