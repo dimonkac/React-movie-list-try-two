@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { ReactComponent as Icon } from "../img/like.svg";
 import { Link } from "react-router-dom";
 import Api from "../helpersAPI";
@@ -71,25 +71,27 @@ export const FavoritPage = () => {
 
   const renderMovie = () => {
     return movie.map(({ poster_path, release_date, title, id }) => (
-      <div key={id} className="cart">
-        <div className="poster">
-          <img src={Api.poster_url + poster_path} alt="poster film" />
+      <Fragment>
+        <div key={id} className="cart">
+          <div className="poster">
+            <img src={Api.poster_url + poster_path} alt="poster film" />
+          </div>
+          <div className="poster">{title}</div>
+          <div className="poster">{release_date}</div>
+          <div className="buttons">
+            <button
+              active={favorit.includes(id)}
+              onClick={onAddFavorit(id)}
+              className="like"
+            >
+              <Icon />
+            </button>
+            <Link to={`/more/${id}`} className="more ">
+              More
+            </Link>
+          </div>
         </div>
-        <div className="poster">{title}</div>
-        <div className="poster">{release_date}</div>
-        <div className="buttons">
-          <button
-            active={favorit.includes(id)}
-            onClick={onAddFavorit(id)}
-            className="like"
-          >
-            <Icon />
-          </button>
-          <Link to={`/more/${id}`} className="more ">
-            More
-          </Link>
-        </div>
-      </div>
+      </Fragment>
     ));
   };
 
@@ -100,6 +102,9 @@ export const FavoritPage = () => {
       <div className="wraper">
         {renderMovie()}
         {/* {listPages()} */}
+        <div className="carteg"></div>
+        <div className="carteg"></div>
+        <div className="carteg"></div>
       </div>
     );
   }

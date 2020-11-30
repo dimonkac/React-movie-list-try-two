@@ -6,6 +6,9 @@
   color: rgb(2, 20, 5);
   background-color: white;
 }
+.carteg {
+  width: 19%;
+}
 .poster {
   display: flex;
   flex-wrap: wrap;
