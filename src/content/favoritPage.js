@@ -6,7 +6,7 @@ import Api from "../helpersAPI";
 import "./page.css";
 
 export const FavoritPage = () => {
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
 
   const [movie, setMovies] = useState([]);
 
@@ -15,17 +15,19 @@ export const FavoritPage = () => {
   );
   const [load, setLoad] = useState(true);
 
-  // const getMovies = async () => {
-  //   const info = await Api.getMovies().catch(console.log);
-  //   if (info) setMovies(info.results);
-  //   if (load) setLoad(false);
-  // };
-  useEffect(() => {
-    const promises = favorit.map((id) => Api.getMoviesMore(id));
+  const getMovies = async () => {
+    const promises = await favorit.map((id) => Api.getMoviesMore(id));
     Promise.all(promises).then((res) => setMovies(res));
-    console.log(promises);
-
+    console.log(movie);
     if (load) setLoad(false);
+  };
+
+  useEffect(() => {
+    getMovies();
+    // const promises = favorit.map((id) => Api.getMoviesMore(id));
+    // Promise.all(promises).then((res) => setMovies(res));
+    // console.log(movie);
+    // if (load) setLoad(false);
   }, []);
 
   // const onAddFavorit = (title) => () => {
@@ -38,36 +40,37 @@ export const FavoritPage = () => {
     if (favorit.includes(id)) {
       favorit.splice(favorit.indexOf(id), 1);
     } else {
-      favorit.push(id);
+      movie.push(id);
     }
     localStorage.setItem("favorit", JSON.stringify(favorit));
-    console.log(localStorage);
+    console.log(favorit);
+    getMovies();
   };
 
-  const onIncrementMinus = () => {
-    setCount(count - 1);
-    setFavorit();
-  };
-  const onIncrementPlas = () => {
-    setCount(count + 1);
-    setFavorit();
-  };
-  const listPages = () => {
-    return (
-      <div className="pages">
-        <button className="previos" onClick={onIncrementMinus}>
-          previos
-        </button>
-        <div>{count}</div>
-        <button className="next" onClick={onIncrementPlas}>
-          next
-        </button>
-      </div>
-    );
-  };
+  // const onIncrementMinus = () => {
+  //   setCount(count - 1);
+  //   setFavorit();
+  // };
+  // const onIncrementPlas = () => {
+  //   setCount(count + 1);
+  //   setFavorit();
+  // };
+  // const listPages = () => {
+  //   return (
+  //     <div className="pages">
+  //       <button className="previos" onClick={onIncrementMinus}>
+  //         previos
+  //       </button>
+  //       <div>{count}</div>
+  //       <button className="next" onClick={onIncrementPlas}>
+  //         next
+  //       </button>
+  //     </div>
+  //   );
+  // };
 
   const renderMovie = () => {
-    return movie.map(({ poster_path, release_date, title }, id) => (
+    return movie.map(({ poster_path, release_date, title, id }) => (
       <div key={id} className="cart">
         <div className="poster">
           <img src={Api.poster_url + poster_path} alt="poster film" />
@@ -96,7 +99,7 @@ export const FavoritPage = () => {
     return (
       <div className="wraper">
         {renderMovie()}
-        {listPages()}
+        {/* {listPages()} */}
       </div>
     );
   }

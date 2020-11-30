@@ -5,6 +5,6 @@ export const navigation = [
   },
   {
     name: "My Favorite",
-    route: "/favorites",
+    route: "/favorit",
   },
 ];

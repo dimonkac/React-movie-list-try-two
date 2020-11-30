@@ -22,7 +22,7 @@ const App = () => {
       <Wraper>
         <Switch>
           <Route path="/all/:page" component={Content} />
-          <Route path="/favorites" component={FavoritPage} />
+          <Route path="/favorit" component={FavoritPage} />
           <Route path="/more/:id" component={More} />
         </Switch>
       </Wraper>

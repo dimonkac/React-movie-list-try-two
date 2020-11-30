@@ -1,6 +1,6 @@
 .cart {
   width: 19%;
-  min-height: fit-content;
+  height: fit-content;
   border: 1px solid black;
   margin-bottom: 5px;
   color: rgb(2, 20, 5);
