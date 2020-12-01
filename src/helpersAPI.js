@@ -5,7 +5,7 @@ export default class Api {
 
   static poster_url = "http://image.tmdb.org/t/p/w342";
 
-  static getMovies(page = 1) {
+  static getMovies({ page }) {
     return new Promise(async (res, rej) => {
       const result = await fetch(
         `${Api.url}/movie/now_playing?api_key=${Api.key}&language=en-US&page=${page}`
