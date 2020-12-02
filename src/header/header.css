@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 30px;
   box-sizing: border-box;
 }
 .header > svg {
@@ -19,6 +19,6 @@
 }
 .nav-link {
   font-size: 20px;
-  color: white;
+  color: rgb(22, 29, 22);
   text-decoration: none;
 }

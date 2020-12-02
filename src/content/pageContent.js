@@ -5,21 +5,24 @@ import { Link } from "react-router-dom";
 
 import "./page.css";
 
-export const Content = ({
-  match: {
-    params: { page },
-  },
-}) => {
+export const Content = () => {
   const [count, setCount] = useState(1);
   const [movie, setMovies] = useState([]);
   const [load, setLoad] = useState(true);
-
   const favorit = JSON.parse(localStorage.getItem("favorit"));
 
+  const url = "http://api.themoviedb.org/3";
+  const key = "ebea8cfca72fdff8d2624ad7bbf78e4c";
+
   const getMovies = async () => {
-    const info = await Api.getMovies(page).catch(console.log);
-    if (info) setMovies(info.results);
-    if (load) setLoad(false);
+    const info = await fetch(
+      `${url}/movie/now_playing?api_key=${key}&language=en-US&page=${count}`
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        setMovies(json.results);
+        setLoad(false);
+      });
   };
   useEffect(() => {
     getMovies();
