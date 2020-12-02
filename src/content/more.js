@@ -53,7 +53,10 @@ export const More = ({
 }) => {
   const [detail, setDetail] = useState({});
   const [load, setLoad] = useState(true);
-
+const Back = {
+  backgroundImage: `url(${Api.poster_url + backdrop_path})`
+  // backgroundSize: 'cover' ,
+};
   const getMoviesMore = async () => {
     const info = await Api.getMoviesMore(id).catch(console.log);
     if (info) setDetail(info);
@@ -66,11 +69,9 @@ export const More = ({
   if (load) {
     return <div>...load</div>;
   } else {
-<<<<<<< HEAD
     const { original_title, overview, poster_path, genres } = detail;
     return (
       <div>
-=======
     const {
       original_title,
       overview,
@@ -79,10 +80,7 @@ export const More = ({
       backdrop_path,
     } = detail;
     return (
-      <div
-        style={{ backgroundImage: `url(${Api.poster_url + backdrop_path})` }}
-      >
->>>>>>> working
+      <div style={Back}>
         <h3>{original_title}</h3>
         <p>{overview}</p>
         <h3>Genres</h3>
