@@ -23,10 +23,12 @@
 }
 .pages > div {
   border: 1px solid black;
-  width: 24px;
-  height: 24px;
-  margin: 4px;
-  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  border-radius: 50%;
+  font-size: 22px;
+  color: white;
 }
 .previos,
 .next {
@@ -34,11 +36,17 @@
   text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;
+  background-color: #676766;
+  border-radius: 10px;
 }
 .like {
   border: none;
   border-radius: 50%;
   background-color: rgba(167, 226, 236, 0.589);
+}
+.like:active {
+  background-color: green;
+  transition: color 0s;
 }
 .like > svg {
   width: 35px;
