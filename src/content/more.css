@@ -1,0 +1,31 @@
+.containerFilm {
+  background-size: cover;
+  display: flex;
+  width: auto;
+  position: relative;
+  min-height: calc(100vh - 150px);
+}
+.containerFilm > div {
+  z-index: 2;
+  margin: 10px;
+}
+/* .containerFilm::before {
+  content: "";
+  display: block;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: inherit;
+  background-size: cover;
+  opacity: 0.4;
+} */
+.backgroundFilm {
+  width: 100%;
+  height: 766px;
+  opacity: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

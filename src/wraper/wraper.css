@@ -1,7 +1,7 @@
 .wraper {
   width: 100%;
   min-height: calc(100vh - 80px);
-  background-color: rgb(241, 217, 184);
+  background-color: #7074b9;
   padding: 15px;
   display: flex;
   flex-wrap: wrap;
